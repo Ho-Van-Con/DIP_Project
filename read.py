@@ -53,7 +53,7 @@ def draw_contour(image, c, i):
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required = True,
     help = "Path to the image")
-ap.add_argument("-m", "--method", required=True, help="Sorting method")
+#ap.add_argument("-m", "--method", required=True, help="Sorting method")
 args = vars(ap.parse_args())
 
 #------------------------------------------------------------- READ, RESIZE AND SHOW ORIGINAL IMAGE --------------------------------------------
@@ -159,11 +159,36 @@ for contour in contours:
     (x,y,w,h) = cv2.boundingRect(contour)
     if ((h-25)*(h-100)<0 and (w>100) and (y>100)):
     	image = cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,0),2)
+    	if ((y>150) and (y<200)):
+    		so = bin_img[y:y+h,x:x+w]
+    	if ((y>200) and (y<280)):
+    		ten = bin_img[y:y+h,x:x+w]
+    	if ((y>300) and (y<390) and (w>100)):
+    		ngaysinh = bin_img[y:y+h,x:x+w]
+    	if ((y>380) and (y<450) and (h>20)):
+    		nguyenquan_1 = bin_img[y:y+h,x:x+w]
+    	if ((y>440) and (y<500)):
+    		nguyenquan_2 = bin_img[y:y+h,x:x+w]
+    	if ((y>500) and (y<550) and (h>20)):
+    		thuongtru_1 = bin_img[y:y+h,x:x+w]
+    	if ((y>550) and (y<600)):
+    		thuongtru_2 = bin_img[y:y+h,x:x+w]
+
+
+
+	
       
 
 #cv2.drawContours(image, contours, -1, (0,255,0), 3)
 
 cv2.imshow("Image3",image)
+cv2.imshow("So",so)
+cv2.imshow("Ten",ten)
+cv2.imshow("NgaySinh",ngaysinh)
+cv2.imshow("nguyenquan_1",nguyenquan_1)
+cv2.imshow("nguyenquan_2",nguyenquan_2)
+cv2.imshow("thuongtru_1",thuongtru_1)
+cv2.imshow("thuongtru_2",thuongtru_2)
 cv2.waitKey(0)
 
 
